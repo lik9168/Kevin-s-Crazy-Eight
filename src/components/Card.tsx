@@ -20,13 +20,11 @@ export const Card: React.FC<CardProps> = ({ card, onClick, isPlayable, isHidden,
         className={`relative ${isSmall ? 'w-12 h-16' : 'w-20 h-28 sm:w-24 sm:h-36'} bg-white rounded-lg border-2 border-zinc-300 shadow-lg flex items-center justify-center overflow-hidden`}
         whileHover={onClick ? { y: -10 } : {}}
       >
-        <div className="absolute inset-1 bg-blue-800 rounded-md border border-blue-600 flex items-center justify-center">
-          <div className="w-full h-full opacity-20 bg-[radial-gradient(circle_at_center,_white_1px,_transparent_1px)] bg-[size:10px_10px]" />
-          <span className="text-white/20 font-serif text-4xl italic">K</span>
-          
-          {/* Watermark on back */}
-          <div className="absolute bottom-2 right-2 rotate-[-45deg] opacity-10">
-            <span className="text-[8px] font-bold text-white whitespace-nowrap tracking-widest uppercase">
+        <div className="absolute inset-1 bg-blue-800 rounded-md border border-blue-600 flex flex-col items-center justify-center overflow-hidden">
+          <div className="w-full h-full absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_white_1px,_transparent_1px)] bg-[size:10px_10px]" />
+          <div className="relative flex flex-col items-center gap-1">
+            <span className="text-white/40 font-serif text-5xl italic leading-none">K</span>
+            <span className="text-white/60 font-sans text-[10px] font-bold tracking-[0.2em] uppercase">
               Kevin SZ
             </span>
           </div>
