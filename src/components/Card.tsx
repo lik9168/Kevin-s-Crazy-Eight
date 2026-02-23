@@ -23,6 +23,13 @@ export const Card: React.FC<CardProps> = ({ card, onClick, isPlayable, isHidden,
         <div className="absolute inset-1 bg-blue-800 rounded-md border border-blue-600 flex items-center justify-center">
           <div className="w-full h-full opacity-20 bg-[radial-gradient(circle_at_center,_white_1px,_transparent_1px)] bg-[size:10px_10px]" />
           <span className="text-white/20 font-serif text-4xl italic">K</span>
+          
+          {/* Watermark on back */}
+          <div className="absolute bottom-2 right-2 rotate-[-45deg] opacity-10">
+            <span className="text-[8px] font-bold text-white whitespace-nowrap tracking-widest uppercase">
+              Kevin SZ
+            </span>
+          </div>
         </div>
       </motion.div>
     );
@@ -53,6 +60,13 @@ export const Card: React.FC<CardProps> = ({ card, onClick, isPlayable, isHidden,
       
       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl sm:text-5xl ${color} opacity-20`}>
         {symbol}
+      </div>
+
+      {/* Watermark */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[-45deg] pointer-events-none select-none">
+        <span className="text-[10px] sm:text-[12px] font-bold text-zinc-200/30 whitespace-nowrap tracking-widest uppercase">
+          Kevin SZ
+        </span>
       </div>
 
       <div className={`flex flex-col items-end leading-none rotate-180 ${color}`}>

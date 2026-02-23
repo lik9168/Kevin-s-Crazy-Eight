@@ -8,11 +8,23 @@ import { useCrazyEights } from './hooks/useCrazyEights';
 import { Card } from './components/Card';
 import { SuitSelector } from './components/SuitSelector';
 import { GameOver } from './components/GameOver';
+import { RulesModal } from './components/RulesModal';
 import { getSuitSymbol, getSuitColor } from './utils';
 import { Info, HelpCircle, Layers } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function App() {
   const { gameState, playCard, drawCard, selectWildSuit, initGame, getBestCard } = useCrazyEights();
+  const [isRulesOpen, setIsRulesOpen] = useState(false);
+
+  // Show rules on first load
+  useEffect(() => {
+    const hasSeenRules = localStorage.getItem('hasSeenRules');
+    if (!hasSeenRules) {
+      setIsRulesOpen(true);
+      localStorage.setItem('hasSeenRules', 'true');
+    }
+  }, []);
 
   const topCard = gameState.discardPile[gameState.discardPile.length - 1];
   const bestCard = getBestCard(gameState.playerHand, gameState);
@@ -49,7 +61,10 @@ export default function App() {
           </div>
         </div>
 
-        <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+        <button 
+          onClick={() => setIsRulesOpen(true)}
+          className="p-2 hover:bg-white/10 rounded-full transition-colors"
+        >
           <HelpCircle className="w-6 h-6 text-zinc-400" />
         </button>
       </header>
@@ -161,6 +176,7 @@ export default function App() {
         {gameState.winner && (
           <GameOver winner={gameState.winner} onRestart={initGame} />
         )}
+        <RulesModal isOpen={isRulesOpen} onClose={() => setIsRulesOpen(false)} />
       </AnimatePresence>
 
       {/* Background Decoration */}
